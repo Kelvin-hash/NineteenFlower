@@ -1,0 +1,27 @@
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="MasterPage.Master.cs" Inherits="NeinteenFlower.View.Site1" %>
+
+<!DOCTYPE html>
+
+<html>
+<head runat="server">
+    <title>Neinteen Flower</title>
+    <asp:ContentPlaceHolder ID="head" runat="server">
+    </asp:ContentPlaceHolder>
+</head>
+<body>
+    <div>
+        <header style="align-items: center; text-decoration: none"><a href="Home.aspx">Neinteen Flower</a></header>
+    </div>
+    <form id="form1" runat="server" action="#">
+        <div>
+            <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">
+            </asp:ContentPlaceHolder>
+        </div>
+    </form>
+    <div>
+        <footer>
+            <span>Pattern Software Design - 2021</span>
+        </footer>
+    </div>
+</body>
+</html>

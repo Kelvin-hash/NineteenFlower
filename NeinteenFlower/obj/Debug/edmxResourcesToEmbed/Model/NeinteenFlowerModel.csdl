@@ -1,0 +1,119 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="NeinteenFlowerDBModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="MsEmployee">
+    <Key>
+      <PropertyRef Name="EmployeeID" />
+    </Key>
+    <Property Name="EmployeeID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="EmployeeName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="EmployeeDOB" Type="DateTime" Nullable="false" Precision="0" />
+    <Property Name="EmployeeGender" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="EmployeeAddress" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="EmployeePhone" Type="String" MaxLength="12" FixedLength="true" Unicode="false" Nullable="false" />
+    <Property Name="EmployeeEmail" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="EmployeeSalary" Type="Int32" Nullable="false" />
+    <Property Name="EmployeePassword" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+  </EntityType>
+  <EntityType Name="MsFlower">
+    <Key>
+      <PropertyRef Name="FlowerID" />
+    </Key>
+    <Property Name="FlowerID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="FlowerName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="FlowerType" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="FlowerDescription" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="FlowerPrice" Type="Int32" Nullable="false" />
+    <Property Name="FlowerImage" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" Nullable="false" />
+    <NavigationProperty Name="TrDetails" Relationship="NeinteenFlowerDBModel.FK__TrDetail__Flower__2C3393D0" FromRole="MsFlower" ToRole="TrDetail" />
+  </EntityType>
+  <EntityType Name="MsMember">
+    <Key>
+      <PropertyRef Name="MemberID" />
+    </Key>
+    <Property Name="MemberID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="MemberName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="MemberDOB" Type="DateTime" Nullable="false" Precision="0" />
+    <Property Name="MemberGender" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="MemberAddress" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="MemberPhone" Type="String" MaxLength="12" FixedLength="true" Unicode="false" Nullable="false" />
+    <Property Name="MemberEmail" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="MemberPassword" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <NavigationProperty Name="TrHeaders" Relationship="Self.FK__TrHeader__Member__29572725" FromRole="MsMember" ToRole="TrHeader" />
+  </EntityType>
+  <EntityType Name="TrHeader">
+    <Key>
+      <PropertyRef Name="TransactionID" />
+    </Key>
+    <Property Name="TransactionID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="MemberID" Type="Int32" Nullable="false" />
+    <Property Name="TransactionDate" Type="DateTime" Nullable="false" Precision="0" />
+    <Property Name="DiscountPercentage" Type="Decimal" Precision="5" Scale="2" Nullable="false" />
+    <NavigationProperty Name="MsMember" Relationship="Self.FK__TrHeader__Member__29572725" FromRole="TrHeader" ToRole="MsMember" />
+    <NavigationProperty Name="TrDetail" Relationship="NeinteenFlowerDBModel.FK__TrDetail__Transa__2B3F6F97" FromRole="TrHeader" ToRole="TrDetail" />
+  </EntityType>
+  <Association Name="FK__TrHeader__Member__29572725">
+    <End Role="MsMember" Type="Self.MsMember" Multiplicity="1" />
+    <End Role="TrHeader" Type="Self.TrHeader" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="MsMember">
+        <PropertyRef Name="MemberID" />
+      </Principal>
+      <Dependent Role="TrHeader">
+        <PropertyRef Name="MemberID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="NeinteenFlowerDBEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="MsEmployees" EntityType="Self.MsEmployee" />
+    <EntitySet Name="MsFlowers" EntityType="Self.MsFlower" />
+    <EntitySet Name="MsMembers" EntityType="Self.MsMember" />
+    <EntitySet Name="TrHeaders" EntityType="Self.TrHeader" />
+    <AssociationSet Name="FK__TrHeader__Member__29572725" Association="Self.FK__TrHeader__Member__29572725">
+      <End Role="MsMember" EntitySet="MsMembers" />
+      <End Role="TrHeader" EntitySet="TrHeaders" />
+    </AssociationSet>
+    <EntitySet Name="TrDetails" EntityType="NeinteenFlowerDBModel.TrDetail" />
+    <AssociationSet Name="FK__TrDetail__Flower__2C3393D0" Association="NeinteenFlowerDBModel.FK__TrDetail__Flower__2C3393D0">
+      <End Role="MsFlower" EntitySet="MsFlowers" />
+      <End Role="TrDetail" EntitySet="TrDetails" />
+    </AssociationSet>
+    <AssociationSet Name="FK__TrDetail__Transa__2B3F6F97" Association="NeinteenFlowerDBModel.FK__TrDetail__Transa__2B3F6F97">
+      <End Role="TrHeader" EntitySet="TrHeaders" />
+      <End Role="TrDetail" EntitySet="TrDetails" />
+    </AssociationSet>
+  </EntityContainer>
+  <EntityType Name="TrDetail">
+    <Key>
+      <PropertyRef Name="TransactionID" />
+    </Key>
+    <Property Name="TransactionID" Type="Int32" Nullable="false" />
+    <Property Name="FlowerID" Type="Int32" Nullable="false" />
+    <Property Name="Quantity" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="MsFlower" Relationship="NeinteenFlowerDBModel.FK__TrDetail__Flower__2C3393D0" FromRole="TrDetail" ToRole="MsFlower" />
+    <NavigationProperty Name="TrHeader" Relationship="NeinteenFlowerDBModel.FK__TrDetail__Transa__2B3F6F97" FromRole="TrDetail" ToRole="TrHeader" />
+  </EntityType>
+  <Association Name="FK__TrDetail__Flower__2C3393D0">
+    <End Type="NeinteenFlowerDBModel.MsFlower" Role="MsFlower" Multiplicity="1" />
+    <End Type="NeinteenFlowerDBModel.TrDetail" Role="TrDetail" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="MsFlower">
+        <PropertyRef Name="FlowerID" />
+      </Principal>
+      <Dependent Role="TrDetail">
+        <PropertyRef Name="FlowerID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__TrDetail__Transa__2B3F6F97">
+    <End Type="NeinteenFlowerDBModel.TrHeader" Role="TrHeader" Multiplicity="1" />
+    <End Type="NeinteenFlowerDBModel.TrDetail" Role="TrDetail" Multiplicity="0..1" />
+    <ReferentialConstraint>
+      <Principal Role="TrHeader">
+        <PropertyRef Name="TransactionID" />
+      </Principal>
+      <Dependent Role="TrDetail">
+        <PropertyRef Name="TransactionID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+</Schema>

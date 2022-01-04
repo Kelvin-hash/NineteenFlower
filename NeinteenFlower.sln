@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.31313.79
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NeinteenFlower", "NeinteenFlower\NeinteenFlower.csproj", "{38202557-65EB-4054-BCE8-498E3C7BF0FF}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{38202557-65EB-4054-BCE8-498E3C7BF0FF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{38202557-65EB-4054-BCE8-498E3C7BF0FF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{38202557-65EB-4054-BCE8-498E3C7BF0FF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{38202557-65EB-4054-BCE8-498E3C7BF0FF}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {4747855A-4C9A-4C5B-9D54-ED9A7022C04E}
+	EndGlobalSection
+EndGlobal
